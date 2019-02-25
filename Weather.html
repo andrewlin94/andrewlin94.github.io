@@ -5,12 +5,13 @@
   var apikey = "4d59e65a82617e3bbc45a3870fc05ada";
   var apiurl = "https://api.openweathermap.org/data/2.5/weather?"
   var cityList = [];
-  getCityList(cityList);
- 
+  var countryList = [];
+  populateCountryList(countryList);
+
   function getWeather() { 
     // let location = "zip=" + document.getElementById("zipcode").value + "," + document.getElementById("countrycode").value;
-    let selectedCity = document.getElementById("citySelect").value[0];
-    let location = "id=" + cityList[selectedCity].id;
+    let selectedCity = document.getElementById("citySelect").value;
+    let location = "id=" + selectedCity;
     let url =  apiurl + location + "&units=metric" + "&appid=4d59e65a82617e3bbc45a3870fc05ada";
     fetch(url).then(response => {
       return response.json();
@@ -30,23 +31,20 @@
     });
   }
 
-  function getCityList(cityList) {
-    $.getJSON('https://raw.githubusercontent.com/andrewlin94/JSWeather/master/city.list.json', function(json) {
-      for (let name in json) {
-        if (json.hasOwnProperty(name)) {
-          let item = json[name];
-          if (item.country == "CA") {
-            cityList.push({
-              name: item.name,
-              country: item.country,
-              id: item.id
-            });
+  function populateCountryList(countryList) {
+    $.getJSON("https://raw.githubusercontent.com/andrewlin94/JSWeather/master/city.list.json", function(json) {
+      for (let index in json) {
+        if (json.hasOwnProperty(index)) {
+          let item = json[index];
+          // console.log(countryList.indexOf(item.country));
+          if (countryList.indexOf(item.country) == -1 && item.country != "") {
+            countryList.push(item.country);
           }
         }
       }
-      var select = document.getElementById("citySelect");
-      for (let i = 0; i < cityList.length; ++i) {
-        var opt = i + " " + cityList[i].name + ", " + cityList[i].country;
+      var select = document.getElementById("countrySelect");
+      for (let i = 0; i < countryList.length; ++i) {
+        var opt = countryList[i];
         var el = document.createElement("option");
         el.textContent = opt;
         el.value = opt;
@@ -54,13 +52,54 @@
       }
     });
   }
+
+  function populateCityList(countryList, cityList, country) {
+    var select = document.getElementById("citySelect");
+    let length = select.options.length;
+    cityList = [];
+    for (let i = 0; i < length; ++i) {
+      select.remove(0);
+    }
+    let emptyEle = document.createElement("option");
+    emptyEle.textContent = "Choose your city";
+    select.add(emptyEle);
+    $.getJSON('https://raw.githubusercontent.com/andrewlin94/JSWeather/master/city.list.json', function(json) {
+      for (let name in json) {
+        if (json.hasOwnProperty(name)) {
+          let item = json[name];
+          let selectedCountry = countryList[country];
+          if (item.country == selectedCountry) {
+            cityList.push({
+              name: item.name,
+              id: item.id
+            });
+          }
+        }
+      }
+      var select = document.getElementById("citySelect");
+      for (let i = 0; i < cityList.length; ++i) {
+        var opt = cityList[i].name;
+        var el = document.createElement("option");
+        el.textContent = opt;
+        el.value = cityList[i].id;
+        select.add(el);
+      }
+    });
+  }
+  // function removeSelect() {
+  //   var select = document.getElementById("citySelect");
+  //   select.remove(0);
+  // }
   </script>
 </head>
 <html>
   <form id="inputLocation">
+    <select id="countrySelect" onchange="if (this.selectedIndex) populateCityList(countryList, cityList, this.selectedIndex - 1);">
+      <option value="-1">Choose your country</option>
+    </select> 
     <select id="citySelect">
       <option>Choose your city</option>
-    </select>
+    </select> 
   </form>
   <br>
   <form id="currentWeather">
@@ -73,4 +112,5 @@
     Wind Direction: <output type="number" id="wdir"></output>
   </form>
   <button onclick=getWeather()>Get Weather</button>
+  <!-- <button onclick=removeSelect()>Remove</button> -->
 </html>
