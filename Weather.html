@@ -6,7 +6,7 @@
   var apiurl = "https://api.openweathermap.org/data/2.5/weather?"
   var cityList = [];
   var countryList = [];
-  populateCountryList(countryList);
+  populateCountryList();
 
   function getWeather() { 
     // let location = "zip=" + document.getElementById("zipcode").value + "," + document.getElementById("countrycode").value;
@@ -31,7 +31,7 @@
     });
   }
 
-  function populateCountryList(countryList) {
+  function populateCountryList() {
     $.getJSON("https://raw.githubusercontent.com/andrewlin94/JSWeather/master/city.list.json", function(json) {
       for (let index in json) {
         if (json.hasOwnProperty(index)) {
@@ -42,10 +42,10 @@
           }
         }
       }
-      var select = document.getElementById("countrySelect");
+      let select = document.getElementById("countrySelect");
       for (let i = 0; i < countryList.length; ++i) {
-        var opt = countryList[i];
-        var el = document.createElement("option");
+        let opt = countryList[i];
+        let el = document.createElement("option");
         el.textContent = opt;
         el.value = opt;
         select.appendChild(el);
@@ -53,8 +53,8 @@
     });
   }
 
-  function populateCityList(countryList, cityList, country) {
-    var select = document.getElementById("citySelect");
+  function populateCityList(country) {
+    let select = document.getElementById("citySelect");
     let length = select.options.length;
     cityList = [];
     for (let i = 0; i < length; ++i) {
@@ -76,10 +76,10 @@
           }
         }
       }
-      var select = document.getElementById("citySelect");
+      let select = document.getElementById("citySelect");
       for (let i = 0; i < cityList.length; ++i) {
-        var opt = cityList[i].name;
-        var el = document.createElement("option");
+        let opt = cityList[i].name;
+        let el = document.createElement("option");
         el.textContent = opt;
         el.value = cityList[i].id;
         select.add(el);
@@ -94,7 +94,7 @@
 </head>
 <html>
   <form id="inputLocation">
-    <select id="countrySelect" onchange="if (this.selectedIndex) populateCityList(countryList, cityList, this.selectedIndex - 1);">
+    <select id="countrySelect" onchange="if (this.selectedIndex) populateCityList(this.selectedIndex - 1);">
       <option value="-1">Choose your country</option>
     </select> 
     <select id="citySelect">
