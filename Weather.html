@@ -34,7 +34,7 @@
   }
 
   function populateCountryList() {
-    $.getJSON("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/slim-2/slim-2.json", function(json) {
+    $.getJSON("https://raw.githubusercontent.com/andrewlin94/andrewlin94.github.io/master/iso3166-country-code.json", function(json) {
       for (let index in json) {
         if (json.hasOwnProperty(index)) {
           let item = json[index];
