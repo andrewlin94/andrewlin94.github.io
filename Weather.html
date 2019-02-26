@@ -4,8 +4,10 @@
   <script type="text/javascript">
   var apikey = "4d59e65a82617e3bbc45a3870fc05ada";
   var apiurl = "https://api.openweathermap.org/data/2.5/weather?"
+  var countryJSON = "https://raw.githubusercontent.com/andrewlin94/andrewlin94.github.io/master/city.list.json";
   var cityList = [];
   var countryList = [];
+  var codeList = [];
   populateCountryList();
 
   function getWeather() { 
@@ -32,28 +34,45 @@
   }
 
   function populateCountryList() {
-    $.getJSON("https://raw.githubusercontent.com/andrewlin94/JSWeather/master/city.list.json", function(json) {
+    $.getJSON("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/slim-2/slim-2.json", function(json) {
       for (let index in json) {
         if (json.hasOwnProperty(index)) {
           let item = json[index];
           // console.log(countryList.indexOf(item.country));
+          if (codeList.indexOf(item["alpha-2"]) == -1 && item["alpha-2"] != "" && item.name != "") {
+            let code = item["alpha-2"];
+            codeList[code] = item.name;
+          }
+        }
+      }
+    });
+    codeList["XK"] = "Kosovo";
+    $.getJSON(countryJSON, function(json) {
+      for (let index in json) {
+        if (json.hasOwnProperty(index)) {
+          let item = json[index];
+          // console.log(countryList.indexOf(item.country));
+          // console.log(item.country);
           if (countryList.indexOf(item.country) == -1 && item.country != "") {
             countryList.push(item.country);
           }
         }
       }
+      countryList.sort();
       let select = document.getElementById("countrySelect");
       for (let i = 0; i < countryList.length; ++i) {
-        let opt = countryList[i];
+        let currentCountry = countryList[i];
+        let opt = codeList[currentCountry];
         let el = document.createElement("option");
-        el.textContent = opt;
+        el.textContent = opt; 
         el.value = opt;
-        select.appendChild(el);
+        select.add(el);
       }
     });
   }
 
   function populateCityList(country) {
+    // console.log(country);
     let select = document.getElementById("citySelect");
     let length = select.options.length;
     cityList = [];
@@ -63,7 +82,7 @@
     let emptyEle = document.createElement("option");
     emptyEle.textContent = "Choose your city";
     select.add(emptyEle);
-    $.getJSON('https://raw.githubusercontent.com/andrewlin94/JSWeather/master/city.list.json', function(json) {
+    $.getJSON(countryJSON, function(json) {
       for (let name in json) {
         if (json.hasOwnProperty(name)) {
           let item = json[name];
@@ -76,6 +95,7 @@
           }
         }
       }
+      cityList.sort();
       let select = document.getElementById("citySelect");
       for (let i = 0; i < cityList.length; ++i) {
         let opt = cityList[i].name;
