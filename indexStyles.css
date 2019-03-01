@@ -1,0 +1,56 @@
+html, body{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background-color: #222;
+  /* background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-632392.jpg);  */
+}
+
+a:link {
+  color: green;
+}
+
+a:visited {
+  color: green;
+}
+
+nav {
+  position: fixed;
+  right: 10px;
+  margin: 10px 0px 10px 0px;
+  top: 0px;
+  font-size: 20px;
+}
+
+.nav-link {
+  padding-left: 20px;
+}
+section {
+  min-height: 60vh;
+  padding-top: 40vh;
+}
+/* #welcome-section {
+  min-height: 60vh;
+  padding-top: 40vh;
+}
+
+#projects {
+  min-height: 60vh;
+  padding-top: 40vh;
+} */
+#project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 25%);
+  padding-left: 20vw;
+}
+
+.project-tile {
+  padding: 20px 20px 20px 20px;
+}
+
+@media (max-width: 800px) {
+  .project-tile {
+    padding: 5px 5px 5px 5px;
+  }
+}

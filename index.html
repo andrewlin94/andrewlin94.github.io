@@ -1,66 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
-      html, body{
-        font-family: 'Open Sans', sans-serif;
-        font-size: 18px;
-        text-align: center;
-      /*   color: rgb(255, 255, 255); */
-      /*   background-color: #222; */
-      }
-
-      nav {
-        position: fixed;
-        right: 10px;
-        margin: 10px 0px 10px 0px;
-        top: 0px;
-        font-size: 20px;
-      }
-
-      .nav-link {
-        padding-left: 20px;
-      }
-
-      #welcome-section {
-        min-height: 60vh;
-        padding-top: 40vh;
-      }
-
-      #projects {
-        min-height: 60vh;
-        padding-top: 40vh;
-      }
-      #project-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 25%);
-        padding-left: 20vw;
-      }
-
-      .project-tile {
-        padding: 20px 20px 20px 20px;
-      }
-
-      @media (max-width: 800px) {
-        .project-tile {
-          padding: 5px 5px 5px 5px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="indexStyles.css"></style>
   </head>
 
   <nav id="navbar">
     <a class="nav-link" href="#welcome-section">About</a>
     <a class="nav-link" href="#projects">Projects</a>
+    <a class="nav-link" href="#contact">Contact</a>
   </nav>
   <section id="welcome-section">
     <h1>Andrew Lin</h1>
-    <p>This is my first time trying web development</p>
+    <p>New graduate from McGill University in Electrical Engineering with a minor in Software. Interest in Software Development.</p>
   </section>
   <section id="projects">
     <h1>My Projects</h1>
-      <a href="Weather.html">My weather application</a>
+      <a href="Weather.html">Weather</a><br>
+      <a href="https://github.com/andrewlin94/" target="_blank">GitHub for other projects</a><br>
+      <a href="https://www.freecodecamp.org/linejun/" target="_blank">FreeCodeCamp profile</a>
     </div>
-    <a id="profile-link" href="https://www.freecodecamp.org/linejun/" target="_blank">More</a>
+  </section>
+  <section id="contact">
+    <h1>Contact information</h1>
+    <a href="mailto:andrew.lin2@mail.mcgill.ca">Email</a>
   </section>
 </html>
