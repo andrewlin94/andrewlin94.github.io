@@ -20,14 +20,12 @@ function getWeather() {
     document.getElementById("temp").value = data.main.temp +  String.fromCharCode(176) + "C";
     document.getElementById("humid").value = data.main.humidity + String.fromCharCode(37);
     document.getElementById("condition").value = data.weather[0].main;
-    // if (data.weather[0].main == "Snow") {
-    //   document.getElementById("weatherImage").src = ""
-    // }
     document.getElementById("wspeed").value = data.wind.speed + " m/s";
-    document.getElementById("wdir").value = data.wind.deg + String.fromCharCode(176);
+    document.getElementById("wdir").value = data.wind.deg + String.fromCharCode(176);    
   }).catch(err => {
     // Do something for an error here
     console.log("Invalid Location");
+    console.log(err);
   });
 }
 function populateCountryList() {

@@ -12,8 +12,10 @@ table {
 
 .currentWeather {
   text-align: left;
+  margin-right: 20px;
 }
 
 .currentData {
   text-align : right;
+  margin-left: 20px;
 }
