@@ -5,3 +5,15 @@ html, body{
   color: rgb(255, 255, 255);
   background-color: #222;
 }
+
+table {
+  margin: auto;
+}
+
+.currentWeather {
+  text-align: left;
+}
+
+.currentData {
+  text-align : right;
+}

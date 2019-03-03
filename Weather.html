@@ -14,15 +14,30 @@
     </select> 
   </form>
   <br>
-  <form id="currentWeather">
-    Condition: <output type="text" id="condition"></output><br>
-    Latitude: <output type="number" id="latitude"></output><br>  
-    Longitude: <output type="number" id="longitude"></output><br>
-    Temperature: <output type="number" id="temp"></output><br>
-    Humidity: <output type="number" id="humid"></output><br>
-    Wind Speed: <output type="number" id="wspeed"></output><br>
-    Wind Direction: <output type="number" id="wdir"></output>
-  </form>
+  <table>
+    <tr>
+      <td class="currentWeather">Condition:</td><td class="currentData"><output type="text" id="condition"></output></td>
+    </tr>
+    <tr>
+      <td class="currentWeather">Temperature:</td><td class="currentData"><output type="number" id="temp"></output></td>
+    </tr>
+    <tr>
+      <td class="currentWeather">Humidity:</td><td class="currentData"><output type="number" id="humid"></output></td>
+    </tr>
+    <tr>
+      <td class="currentWeather">Wind Speed:</td><td class="currentData"><output type="number" id="wspeed"></output></td>
+    </tr>
+    <tr>
+      <td class="currentWeather">Wind Direction:</td><td class="currentData"><output type="number" id="wdir"></output></td>
+    </tr>
+    <tr>
+      <td class="currentWeather">Latitude:</td><td class="currentData"><output type="number" id="latitude"></output></td>
+    </tr>
+    <tr>
+      <td class="currentWeather">Longitude:</td><td class="currentData"><output type="number" id="longitude"></output></td>
+    </tr>
+  </table>
+  <img class="weatherImage">
   <button onclick=getWeather()>Get Weather</button>
   <!-- <button onclick=removeSelect()>Remove</button> -->
 </html>
