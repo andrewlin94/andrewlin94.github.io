@@ -5,7 +5,13 @@ html, body{
   color: rgb(255, 255, 255);
   background-color: #222;
   /* background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-632392.jpg);  */
+  width: 70%;
+  margin: auto;
 }
+
+/* h1 {
+  color: rgb(64, 200, 200);
+} */
 
 a:link {
   color: green;
@@ -22,13 +28,18 @@ nav {
   top: 0px;
   font-size: 20px;
 }
+#navbar {
+  position: fixed;
+  width: 100%;
+  text-align: right;
+}
 
 .nav-link {
   padding-left: 20px;
 }
 
 section {
-  min-height: 60vh;
+  min-height: 50vh;
   padding-top: 40vh;
 }
 /* #welcome-section {
